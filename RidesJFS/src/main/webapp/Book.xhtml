@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Book Rides</title>
+		<style>
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	min-height: 100vh;
+}
+
+.registration-container {
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	width: 100%;
+	max-width: 600px;
+}
+
+.registration-container h3 {
+	margin-bottom: 20px;
+}
+
+.registration-container select, .registration-container input[readonly]
+	{
+	width: 80%;
+	max-width: 300px;
+	margin: 10px auto;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.registration-container .calendar-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	max-width: 300px;
+	margin: 20px auto;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #f9f9f9;
+}
+
+.small-blue-button {
+	display: block;
+	width: 70%;
+	max-width: 250px;
+	margin: 20px auto;
+	padding: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.small-blue-button:hover {
+	background-color: #0056b3;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.no-rides-message {
+	color: red;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+h:dataTable {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	font-size: 16px;
+	text-align: left;
+}
+
+h:dataTable th, h:dataTable td {
+	border: 1px solid #ddd;
+	padding: 12px;
+}
+
+h:dataTable th {
+	background-color: #f4f4f4;
+	color: #333;
+	font-weight: bold;
+	text-align: center;
+}
+
+h:dataTable tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+h:dataTable tr:hover {
+	background-color: #f1f1f1;
+}
+
+.excel-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 16px;
+}
+
+.excel-table th, .excel-table td {
+	border: 1px solid #ccc;
+	padding: 8px;
+	text-align: center;
+}
+
+.excel-table th {
+	background-color: #f4f4f4;
+	font-weight: bold;
+}
+
+.excel-table tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.excel-table tr:hover {
+	background-color: #e6f7ff;
+}
+
+.centered {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.logout-btn {
+	display: inline-block;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 18px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width: 50%;
+	max-width: 300px;
+}
+
+.logout-btn:hover {
+	background-color: #0056b3;
+}
+
+.logout-button {
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+.registration-container h:outputText {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.registration-container .form-row {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.registration-container h:selectOneMenu {
+	display: block;
+	width: 80%;
+	max-width: 300px;
+	margin: 10px auto;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+</style>
+	</h:head>
+	<body>
+		<h:form>
+			<div class="logout-button">
+				<h:commandButton value="Atzera" action="itxi" immediate="true"
+					styleClass="logout-btn" />
+			</div>
+			<div class="registration-container">
+				<h3>Bidaiaren informazioa</h3>
+
+
+				<div class="form-row">
+					<div>
+						<h:outputText value="Irteera: " />
+						<h:selectOneMenu value="#{book.departCity}" id="departCity"
+							required="true">
+							<f:selectItem itemLabel="Aukeratu irteera" itemValue="" />
+							<f:selectItems value="#{book.availableDepartCities}" var="city"
+								itemValue="#{city}" itemLabel="#{city}" />
+							<p:ajax listener="#{book.updateArrivalCities}"
+								update="arrivalCity" />
+						</h:selectOneMenu>
+						<h:message for="departCity" styleClass="error-message" />
+					</div>
+
+					<div>
+						<h:outputText value="Helmuga: " />
+						<h:selectOneMenu value="#{book.arrivalCity}" id="arrivalCity"
+							required="true">
+							<f:selectItem itemLabel="Aukeratu helmuga" itemValue="" />
+							<f:selectItems value="#{book.availableArrivalCities}" var="city"
+								itemValue="#{city}" itemLabel="#{city}" />
+						</h:selectOneMenu>
+						<h:message for="arrivalCity" styleClass="error-message" />
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div>
+						<h:outputText value="Data: " />
+						<div class="calendar-box">
+							<p:calendar id="date" value="#{book.date}" navigator="true"
+								required="true" mode="inline" />
+						</div>
+						<h:message for="date" styleClass="error-message" />
+					</div>
+				</div>
+
+				<div class="centered">
+					<h:commandButton value="Bilatu" action="#{book.loadAvailableRides}"
+						update="ridesTable noRidesMessage" styleClass="small-blue-button" />
+				</div>
+
+
+				<h:panelGroup id="ridesTable" rendered="#{not empty book.rides}">
+					<h3>Bidaiak:</h3>
+					<h:dataTable value="#{book.rides}" var="ride"
+						styleClass="excel-table">
+						<h:column>
+							<f:facet name="header">Gidaria</f:facet>
+							<h:outputText value="#{ride.driver.name}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Eserleku libreak</f:facet>
+							<h:outputText value="#{ride.nPlaces}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Prezioa</f:facet>
+							<h:outputText value="#{ride.price}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Aukeratu</f:facet>
+							<h:form>
+								<h:commandButton value="Aukeratu" action="#{book.aukeratu}">
+									<f:setPropertyActionListener target="#{book.selectedRide}"
+										value="#{ride}" />
+								</h:commandButton>
+							</h:form>
+						</h:column>
+					</h:dataTable>
+
+
+
+				</h:panelGroup>
+
+				<div class="centered">
+					<h:outputText id="noRidesMessage"
+						value="Ez daude bidaiak aukeratutako hiri eta datentzat."
+						rendered="#{book.searchPerformed and empty book.rides}"
+						styleClass="no-rides-message" />
+
+				</div>
+			</div>
+			<h:messages style="color: red; font-size: 12px;" />
+		</h:form>
+	</body>
+</f:view>
+</html>

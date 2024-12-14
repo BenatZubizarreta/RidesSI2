@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" comment="atzera" id="pf17328072262940" configfile="/RidesJFS/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Hasiera.xhtml" x="156" y="348" id="pf17328074104711" referenceLink="//@navigationRule.22/@navigationCase.0/@toViewId|" outlinks="pf17328074104722 pf17328074104723 pf17336808406956 pf17339965271100" inlinks="pf17331427350542 pf17331427350543 pf17336620010952 pf17336808406957 pf173369531108012 pf17339965271101" path="/Hasiera.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" x="396" y="192" id="pf17328074104724" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf17328081625920 pf17328158023763 pf17331427350542" inlinks="pf17328074104722" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Register.xhtml" x="388" y="456" id="pf17328074104725" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf17328081625931 pf17328158023774 pf17331427350543" inlinks="pf17328074104723" path="/Register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CreateRide.xhtml" x="672" y="12" id="pf17328081625932" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf17331411672180" inlinks="pf17336618060730" path="/CreateRide.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Book.xhtml" x="984" y="468" id="pf17328158023775" referenceLink="//@navigationRule.21/@fromViewId|" outlinks="pf17331411672181 pf17336816722939" inlinks="pf17336762967370 pf173368167229310" path="/Book.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="DriverMenu.xhtml" x="636" y="204" id="pf17336618060731" referenceLink="//@navigationRule.17/@navigationCase.0/@toViewId|" outlinks="pf17336618060730 pf17336620010952 pf17336639683183 pf17336785139043" inlinks="pf17328081625920 pf17328081625931 pf17331411672180 pf17336639683184 pf17336785139054" path="/DriverMenu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Dirua.xhtml" x="888" y="216" id="pf17336639683185" referenceLink="//@navigationRule.23/@fromViewId|" outlinks="pf17336639683184 pf17337375909320" inlinks="pf17336639683183 pf17336762967371" path="/Dirua.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="TravelerMenu.xhtml" x="724" y="336" id="pf17336762967372" referenceLink="//@navigationRule.23/@navigationCase.0/@toViewId|" outlinks="pf17336762967370 pf17336762967371 pf173369531108012" inlinks="pf17328158023763 pf17328158023774 pf17331411672181 pf17337375909320" path="/TravelerMenu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="EskaerakKudeatu.xhtml" x="901" y="84" id="pf17336785139055" referenceLink="//@navigationRule.17/@fromViewId|" outlinks="pf17336785139054" inlinks="pf17336785139043" path="/EskaerakKudeatu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="QueryRides.xhtml" x="648" y="456" id="pf17336808406958" referenceLink="//@navigationRule.19/@fromViewId|" outlinks="pf17336808406957" inlinks="pf17336808406956" path="/QueryRides.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="BookSelectedRide.xhtml" x="1008" y="192" id="pf173368167229311" referenceLink="//@navigationRule.21/@navigationCase.0/@toViewId|" outlinks="pf173368167229310" inlinks="pf17336816722939" path="/BookSelectedRide.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="HiriakErakutsi.xhtml" x="132" y="154" id="pf17339965271112" outlinks="pf17339965271101 pf17339974921403" inlinks="pf17339965271100 pf17339974921404" path="/HiriakErakutsi.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="HelmugaBidaiak.xhtml" x="276" y="60" id="pf17339974921405" outlinks="pf17339974921404" inlinks="pf17339974921403" path="/HelmugaBidaiak.xhtml"/>
+  <links id="pf17328074104722" target="pf17328074104724" source="pf17328074104711" outcome="login"/>
+  <links id="pf17328074104723" target="pf17328074104725" source="pf17328074104711" outcome="register"/>
+  <links id="pf17328081625931" target="pf17336618060731" source="pf17328074104725" outcome="gidari"/>
+  <links id="pf17328081625920" target="pf17336618060731" source="pf17328074104724" outcome="gidari"/>
+  <links id="pf17328158023774" target="pf17336762967372" source="pf17328074104725" outcome="bidaiari"/>
+  <links id="pf17328158023763" target="pf17336762967372" source="pf17328074104724" outcome="bidaiari"/>
+  <links id="pf17331411672180" target="pf17336618060731" source="pf17328081625932" outcome="itxi"/>
+  <links id="pf17331411672181" target="pf17336762967372" source="pf17328158023775" outcome="itxi"/>
+  <links id="pf17331427350542" target="pf17328074104711" source="pf17328074104724" outcome="atzera"/>
+  <links id="pf17331427350543" target="pf17328074104711" source="pf17328074104725" outcome="atzera"/>
+  <links id="pf17336618060730" target="pf17328081625932" source="pf17336618060731" outcome="sortu"/>
+  <links id="pf17336620010952" target="pf17328074104711" source="pf17336618060731" outcome="itxi"/>
+  <links id="pf17336639683183" target="pf17336639683185" source="pf17336618060731" outcome="dirua"/>
+  <links id="pf17336639683184" target="pf17336618060731" source="pf17336639683185" outcome="itxi"/>
+  <links id="pf17336762967370" target="pf17328158023775" source="pf17336762967372" outcome="ikusi"/>
+  <links id="pf17336762967371" target="pf17336639683185" source="pf17336762967372" outcome="dirua"/>
+  <links id="pf17336785139043" target="pf17336785139055" source="pf17336618060731" outcome="eskaerakKud"/>
+  <links id="pf17336785139054" target="pf17336618060731" source="pf17336785139055" outcome="itxi"/>
+  <links id="pf17336808406956" target="pf17336808406958" source="pf17328074104711" outcome="gonbidatu"/>
+  <links id="pf17336808406957" target="pf17328074104711" source="pf17336808406958" outcome="itxi"/>
+  <links id="pf17336816722939" target="pf173368167229311" source="pf17328158023775" outcome="aukeratu"/>
+  <links id="pf173368167229310" target="pf17328158023775" source="pf173368167229311" outcome="itxi"/>
+  <links id="pf173369531108012" target="pf17328074104711" source="pf17336762967372" outcome="itxi"/>
+  <links id="pf17337375909320" target="pf17336762967372" source="pf17336639683185" outcome="atzera"/>
+  <links id="pf17339965271100" target="pf17339965271112" source="pf17328074104711" outcome="hiriak"/>
+  <links id="pf17339965271101" target="pf17328074104711" source="pf17339965271112" outcome="itxi"/>
+  <links id="pf17339974921403" target="pf17339974921405" source="pf17339965271112" outcome="bidaiak"/>
+  <links id="pf17339974921404" target="pf17339965271112" source="pf17339974921405" outcome="itxi"/>
+</pageflow:Pageflow>

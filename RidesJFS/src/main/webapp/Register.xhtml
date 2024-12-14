@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<title>Erregistroa - Rides aplikazioa</title>
+		<style>
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+}
+
+.registration-container {
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	width: 100%;
+	max-width: 400px;
+}
+
+.registration-container h3 {
+	margin-bottom: 20px;
+}
+
+.registration-container input, .registration-container select {
+	width: 80%;
+	max-width: 300px;
+	margin: 10px auto;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.registration-container .radio-group {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.registration-container .radio-item {
+	display: flex;
+	align-items: center;
+}
+
+.registration-container .radio-item label {
+	margin-left: 5px;
+	font-size: 14px;
+}
+
+.small-blue-button {
+	display: block;
+	width: 70%;
+	max-width: 250px;
+	margin: 20px auto;
+	padding: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.small-blue-button:hover {
+	background-color: #0056b3;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.logout-btn {
+	display: inline-block;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 18px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width: 50%;
+	max-width: 300px;
+}
+
+.logout-btn:hover {
+	background-color: #0056b3;
+}
+
+.logout-button {
+	text-align: right;
+	margin-bottom: 20px;
+}
+</style>
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="logout-button">
+				<h:commandButton value="Atzera" action="atzera" immediate="true"
+					styleClass="logout-btn" />
+			</div>
+			<div class="registration-container">
+				<h3>Mesedez, sartu zure datuak</h3>
+
+				<h:outputText value="Izena: " />
+				<h:inputText id="izen" value="#{register.name}" required="true">
+					<f:validateLength minimum="1" />
+				</h:inputText>
+				<h:message for="izen" styleClass="error-message" />
+
+				<br />
+				<h:outputText value="Pasahitza: " />
+				<h:inputSecret id="pass" value="#{register.password}"
+					required="true">
+					<f:validateLength minimum="1" />
+				</h:inputSecret>
+				<h:message for="pass" styleClass="error-message" />
+
+				<br />
+				<h:outputText value="Rol-a hautatu: " />
+				<div class="radio-group">
+					<h:selectOneRadio id="rol" value="#{register.role}" required="true">
+						<f:selectItem itemValue="Gidari" itemLabel="Gidari" />
+						<f:selectItem itemValue="Bidaiari" itemLabel="Bidaiari" />
+					</h:selectOneRadio>
+				</div>
+				<h:message for="rol" styleClass="error-message" />
+
+				<h:commandButton value="Erregistratu"
+					action="#{register.erregistratu}"  styleClass="small-blue-button" />
+			</div>
+			<h:messages style="color: red; font-size: 12px;" />
+
+		</h:form>
+	</h:body>
+</f:view>
+</html>

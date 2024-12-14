@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Bidaiaren xehetasunak</title>
+		<style>
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	min-height: 100vh;
+}
+
+.registration-container {
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	width: 100%;
+	max-width: 600px;
+}
+
+.registration-container h3 {
+	margin-bottom: 20px;
+}
+
+.form-row {
+	margin: 10px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+}
+
+.form-row .label-text {
+	font-weight: bold;
+	color: #333;
+}
+
+.form-row .value-text {
+	color: #555;
+	margin-left: 10px;
+}
+
+.small-blue-button {
+	display: block;
+	width: 70%;
+	max-width: 250px;
+	margin: 20px auto;
+	padding: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.small-blue-button:hover {
+	background-color: #0056b3;
+}
+
+.logout-btn {
+	display: inline-block;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 18px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width: 50%;
+	max-width: 300px;
+}
+
+.logout-btn:hover {
+	background-color: #0056b3;
+}
+</style>
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="logout-button">
+				<h:commandButton value="Atzera" action="itxi" immediate="true"
+					styleClass="logout-btn" />
+			</div>
+			<div class="registration-container">
+				<h3>Bidaiaren xehetasunak</h3>
+
+				<div class="form-row">
+					<h:outputText value="Gidaria: " styleClass="label-text" />
+					<h:outputText value="#{rideDetailsBean.ride.driver.name}"
+						styleClass="value-text" />
+				</div>
+				<div class="form-row">
+					<h:outputText value="Irteera: " styleClass="label-text" />
+					<h:outputText value="#{rideDetailsBean.ride.departCity}"
+						styleClass="value-text" />
+				</div>
+				<div class="form-row">
+					<h:outputText value="Helmuga: " styleClass="label-text" />
+					<h:outputText value="#{rideDetailsBean.ride.arrivalCity}"
+						styleClass="value-text" />
+				</div>
+				<div class="form-row">
+					<h:outputText value="Data: " styleClass="label-text" />
+					<h:outputText value="#{rideDetailsBean.ride.dateRide}"
+						styleClass="value-text" />
+				</div>
+				<div class="form-row">
+					<h:outputText value="Prezioa (€/eserlekua): "
+						styleClass="label-text" />
+					<h:outputText value="#{rideDetailsBean.ride.price}"
+						styleClass="value-text" />
+				</div>
+				<div class="form-row">
+					<h:outputText value="Eserleku libreak: " styleClass="label-text" />
+					<h:outputText value="#{rideDetailsBean.ride.nPlaces}"
+						styleClass="value-text" />
+				</div>
+
+				<div class="form-row">
+					<h:outputText value="Eserleku kopurua aukeratu:"
+						styleClass="label-text" />
+					<h:selectOneMenu value="#{rideDetailsBean.selectedSeats}"
+						required="true">
+						<f:selectItem itemLabel="Aukeratu eserleku kopurua" itemValue="" />
+						<f:selectItems value="#{rideDetailsBean.availableSeats}"
+							var="seat" itemValue="#{seat}" itemLabel="#{seat}" />
+					</h:selectOneMenu>
+					<h:message for="selectedSeats" styleClass="error-message" />
+				</div>
+
+				<div class="centered">
+					<h:commandButton value="Erreserbatu"
+						action="#{rideDetailsBean.bookRide}"
+						styleClass="small-blue-button" />
+				</div>
+			</div>
+			<h:messages style="color: red; font-size: 12px;" />
+		</h:form>
+	</h:body>
+</f:view>
+</html>

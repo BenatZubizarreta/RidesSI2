@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Create Rides</title>
+		<style>
+body {
+	display: flex;
+	justify-content: center;
+	align-ite ms: center;
+	height: 100vh;
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+}
+
+.registration-container {
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	width: 100%;
+	max-width: 600px;
+}
+
+.registration-container h3 {
+	margin-bottom: 20px;
+}
+
+.registration-container input, .registration-container select,
+	.registration-container .ui-datepicker {
+	width: 80%;
+	max-width: 300px;
+	margin: 10px auto;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.small-blue-button {
+	display: block;
+	width: 70%;
+	max-width: 250px;
+	margin: 20px auto;
+	padding: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.small-blue-button:hover {
+	background-color: #0056b3;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.form-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.form-row div {
+	flex: 1;
+}
+
+.form-row .calendar {
+	display: flex;
+	justify-content: center;
+}
+
+.logout-btn {
+	display: inline-block;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 18px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width: 50%;
+	max-width: 300px;
+}
+
+.logout-btn:hover {
+	background-color: #0056b3;
+}
+
+.logout-button {
+	text-align: right;
+	margin-bottom: 20px;
+}
+</style>
+	</h:head>
+	<body>
+		<h:form>
+			<div class="logout-button">
+				<h:commandButton value="Atzera" action="itxi" immediate="true"
+					styleClass="logout-btn" />
+			</div>
+			<div class="registration-container">
+				<h3>Bidaiaren informazioa</h3>
+
+				<div class="form-row">
+					<div>
+						<h:outputText value="Irteera: " />
+						<h:inputText id="departCity" value="#{create.departCity}"
+							required="true" />
+						<h:message for="departCity" styleClass="error-message" />
+					</div>
+
+					<div>
+						<h:outputText value="Helmuga: " />
+						<h:inputText id="arrivalCity" value="#{create.arrivalCity}"
+							required="true" />
+						<h:message for="arrivalCity" styleClass="error-message" />
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div>
+						<h:outputText value="Eserlekuak: " />
+						<h:inputText id="seats" value="#{create.seats}" required="true">
+							<f:validateLongRange minimum="1" />
+						</h:inputText>
+
+						<h:message for="seats" styleClass="error-message" />
+					</div>
+
+					<div>
+						<h:outputText value="Prezioa: " />
+						<h:inputText id="price" value="#{create.price}" required="true">
+							<f:validateLongRange minimum="0" />
+						</h:inputText>
+						<h:message for="price" styleClass="error-message" />
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="calendar">
+						<h:outputText value="Data: " />
+						<p:calendar id="date" value="#{create.date}" required="true" />
+						<h:message for="date" styleClass="error-message" />
+					</div>
+				</div>
+
+				<h:commandButton value="Sortu" action="#{create.create}"
+					styleClass="small-blue-button" />
+
+				<h:messages style="color: red; font-size: 12px;" />
+			</div>
+		</h:form>
+	</body>
+</f:view>
+</html>

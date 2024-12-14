@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Eskaerak Kudeatu</title>
+		<style>
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	min-height: 100vh;
+}
+
+.container {
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	width: 100%;
+	max-width: 600px;
+}
+
+h3 {
+	margin-bottom: 20px;
+}
+
+select, input[type="radio"] {
+	margin: 10px auto;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.radio-group {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.small-blue-button {
+	display: block;
+	width: 70%;
+	max-width: 250px;
+	margin: 20px auto;
+	padding: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.small-blue-button:hover {
+	background-color: #0056b3;
+}
+
+.logout-btn {
+	display: inline-block;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 18px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width: 50%;
+	max-width: 300px;
+}
+
+.logout-btn:hover {
+	background-color: #0056b3;
+}
+
+.logout-button {
+	text-align: right;
+	margin-bottom: 20px;
+}
+</style>
+	</h:head>
+	<body>
+		<h:form>
+			<div class="logout-button">
+				<h:commandButton value="Atzera" action="itxi" immediate="true"
+					styleClass="logout-btn" />
+			</div>
+			<div class="container">
+				<h3>Eskaerak kudeatu</h3>
+
+				<div>
+					<h:outputText value="Zure Bidaiak: " />
+					<h:selectOneMenu value="#{eskaerak.selectedRide}" id="ride"
+						required="true">
+						<f:selectItem itemLabel="Aukeratu bidaia" itemValue="" />
+						<f:selectItems value="#{eskaerak.availableRides}" var="ride"
+							itemValue="#{ride.rideNumber}"
+							itemLabel="#{ride.departCity} - #{ride.arrivalCity} - #{ride.dateRide}" />
+						<p:ajax listener="#{eskaerak.updateReservations}" update="eskaera" />
+					</h:selectOneMenu>
+
+
+					<h:message for="ride" style="color:red;" />
+				</div>
+
+				<div>
+					<h:outputText value="Eskaerak " />
+					<h:selectOneMenu value="#{eskaerak.selectedReservation}"
+						id="eskaera" required="true">
+						<f:selectItem itemLabel="Aukeratu erreserba" itemValue="" />
+						<f:selectItems value="#{eskaerak.reservations}" var="eskaera"
+							itemValue="#{eskaera.erreserbaZenbakia}"
+							itemLabel="#{eskaera.traveler} - #{eskaera.eserKop}" />
+					</h:selectOneMenu>
+					<h:message for="eskaera" style="color:red;" />
+				</div>
+
+				<div class="form-row">
+					<h:outputText value="Aukeratu bat: " />
+					<div class="radio-group">
+						<h:selectOneRadio id="rol" value="#{eskaerak.action}"
+							required="true">
+							<f:selectItem itemValue="o" itemLabel="Onartu" />
+							<f:selectItem itemValue="b" itemLabel="Baztertu" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+				<h:commandButton value="Berretsi" action="#{eskaerak.confirmAction}"
+					styleClass="small-blue-button">
+				</h:commandButton>
+
+			</div>
+			<h:messages style="color: red; font-size: 12px;" />
+
+		</h:form>
+	</body>
+</f:view>
+</html>
+

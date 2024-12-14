@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<title>Rides aplikazioa</title>
+		<style>
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+}
+
+.button-container {
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+}
+
+.button-container h3 {
+	margin-bottom: 20px;
+}
+
+.button-container input {
+	width: 80%;
+	max-width: 500px;
+	margin: 10px auto;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.button-container button, .button-container input[type="submit"] {
+	display: block;
+	width: 80%;
+	max-width: 500px;
+	margin: 20px auto;
+	padding: 15px;
+	font-size: 13px;
+	color: #fff;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.button-container button:hover, .button-container input[type="submit"]:hover
+	{
+	background-color: #80bdff;
+}
+</style>
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="button-container">
+				<h3>Mesedez, hautatu aukera bat</h3>
+				<h:commandButton value="SAIOA HASI" action="login"
+					styleClass="button" />
+				<h:commandButton value="ERREGISTRATU" action="register"
+					styleClass="button" />
+				<h:commandButton value="GONBIDATU MODUA" action="gonbidatu"
+					styleClass="button" />
+				<h:commandButton
+					value="HIRI BATERA HELTZEN DIREN&#10;BIDAI GUZTIAK ERAKUTSI"
+					action="hiriak" styleClass="button" />
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

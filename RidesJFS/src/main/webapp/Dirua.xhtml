@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Dirua Kudeatu</title>
+		<style>
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+}
+
+.registration-container {
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	width: 100%;
+	max-width: 600px;
+}
+
+.registration-container h3 {
+	margin-bottom: 20px;
+}
+
+.registration-container input, .registration-container select,
+	.registration-container .ui-datepicker {
+	width: 80%;
+	max-width: 300px;
+	margin: 10px auto;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.small-blue-button {
+	display: block;
+	width: 70%;
+	max-width: 250px;
+	margin: 20px auto;
+	padding: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.small-blue-button:hover {
+	background-color: #0056b3;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.form-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.form-row div {
+	flex: 1;
+}
+
+.logout-btn {
+	display: inline-block;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 18px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width: 50%;
+	max-width: 300px;
+}
+
+.logout-btn:hover {
+	background-color: #0056b3;
+}
+
+.logout-button {
+	text-align: right;
+	margin-bottom: 20px;
+}
+</style>
+	</h:head>
+	<body>
+		<h:form>
+			<div class="logout-button">
+				<h:commandButton value="Atzera" action="#{dirua.atzera}" immediate="true"
+					styleClass="logout-btn">
+				</h:commandButton>
+
+			</div>
+			<div class="registration-container">
+				<h3>Dirua kudeatu</h3>
+				<div class="form-row">
+					<div>
+						<h:outputText value="Zure saldoa: " />
+						<h:outputText id="zurea" value="#{dirua.zurea}€"
+							style="font-weight: bold; color: green;" />
+					</div>
+				</div>
+				<div class="form-row">
+					<div>
+						<h:outputText value="Diru kopurua: " />
+						<h:inputText id="moneyAmount" value="#{dirua.kop}" required="true">
+							<f:validateDoubleRange minimum="0.01" />
+						</h:inputText>
+						<h:message for="moneyAmount" styleClass="error-message" />
+					</div>
+				</div>
+
+				<div class="form-row">
+					<h:outputText value="Aukeratu bat: " />
+					<div>
+						<h:selectOneRadio id="actionType" value="#{dirua.actionType}">
+							<f:selectItem itemValue="sartu" itemLabel="Sartu" />
+							<f:selectItem itemValue="atera" itemLabel="Atera" />
+						</h:selectOneRadio>
+						<h:message for="actionType" styleClass="error-message" />
+					</div>
+				</div>
+
+				<h:commandButton value="Berretsi" action="#{dirua.confirm}"
+					styleClass="small-blue-button">
+					<f:ajax execute="@form" render="zurea mezuak" />
+				</h:commandButton>
+
+				<h:messages id="mezuak" style="color: red; font-size: 12px;" />
+			</div>
+		</h:form>
+	</body>
+</f:view>
+</html>
